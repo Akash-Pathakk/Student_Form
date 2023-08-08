@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"               
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Student Registration Form </title>
+        <link rel="stylesheet" href="style.css"></link>
+
+
+    </h:head>
+
+    <h:form id="demo">
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+
+        <div class="card">
+
+
+        </div>
+        <div id="mtop">
+            <div id="stop"><h4>Student Registration Form</h4></div>               
+        </div>
+        <p:growl id="msgs" showDetail="true" />
+
+
+
+        <p:accordionPanel dynamic="true" cache="true" multiple="true" widgetVar="ondemand">
+
+            <p:tab title="Personal Information">
+                <p:panelGrid id="gridh" columns="2" layout="grid" 
+                             >   
+
+                    <p:outputLabel id="fnameLbl" value="First Name : " />
+                    <p:inputText id="firstNameTxt" value="#{userBean.firstName}" >
+                        <p:ajax process="@this" update="@form"/>
+                    </p:inputText>
+
+
+                    <p:outputLabel id="lnameLbl" value="Last Name : " />
+                    <p:inputText id="lastNameTxt" value="#{userBean.lastName}" >
+                        <p:ajax process="@this" update="@form"/>
+                    </p:inputText>
+
+                    <p:outputLabel id="sdob" value="DOB : " />
+                    <p:calendar value="#{userBean.dob}" >
+                        <p:ajax event="dateSelect" process="@this" update="@form" />
+                    </p:calendar>
+
+                    <p:outputLabel id="semail" value="Email : " />
+                    <p:inputText id="emailTxt" value="#{userBean.email}" >
+                        <p:ajax process="@this" update="@form" />
+                    </p:inputText>
+
+                    <p:outputLabel id="mobileLbl" value="Mobile : " />
+                    <p:inputText id="mobileTxt" value="#{userBean.mobile}" >
+                        <p:ajax process="@this" update="@form" />
+                    </p:inputText>
+
+
+                </p:panelGrid> 
+
+            </p:tab>    
+
+            <p:tab title="Address Information">
+                <p:panelGrid columns="2" layout="grid"
+                             columnClasses="col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4, col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4"
+                             >
+                    <p:outputLabel  value="Address : " />
+                    <p:inputText  value="#{userBean.address}" >
+                        <p:ajax process="@this" update="@form"/>
+                    </p:inputText>
+
+
+                    <p:outputLabel  value="City : " />
+                    <p:inputText  value="#{userBean.city}" >
+                        <p:ajax process="@this" update="@form"/>
+                    </p:inputText>
+
+
+
+                    <p:outputLabel  value="Zip : " />
+                    <p:inputText  value="#{userBean.zip}" >
+                        <p:ajax process="@this" update="@form" />
+                    </p:inputText>
+                </p:panelGrid>     
+            </p:tab>
+            <p:tab title="Education Information" id="education" >
+                <p:panelGrid columns="2" layout="grid"
+                             columnClasses="col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4, col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4"
+                             >
+                    <p:outputLabel  value="Admission No : " />
+                    <p:inputText  value="#{userBean.admission}" >
+                        <p:ajax process="@this" update="@form"/>
+                    </p:inputText>
+
+
+                    <p:outputLabel  value="Admission Branch : " />
+                    <p:inputText  value="#{userBean.branch}" >
+                        <p:ajax process="@this" update="@form"/>
+                    </p:inputText>
+
+
+                </p:panelGrid>
+
+            </p:tab>  
+        </p:accordionPanel>
+
+
+
+
+        <p:panelGrid columns="5" layout="grid">
+
+
+            <p:commandButton id="saveBtn" value="Save"  actionListener="#{userBean.saveRecord}" update="growl">
+                <p:ajax process="@this" update="@form" />
+            </p:commandButton> 
+
+
+            <p:commandButton id="deleteBtn" value="Delete"  actionListener="#{userBean.deleteRecord}" update="growl">
+                <p:ajax process="@this" update="@form"/>
+            </p:commandButton>
+
+            <p:commandButton id="lookBtn" value="LOOKUP"  actionListener="#{userBean.lookupRecord}" update="growl">
+                <p:ajax process="@this" update="@form"/>
+            </p:commandButton>
+
+            <p:commandButton id="updateBtn" value="Update"  actionListener="#{userBean.updateRecord}" update="growl">
+                <p:ajax process="@this" update="@form"/>
+            </p:commandButton>
+
+            <p:commandButton id="clearbtn" value="Clear"  actionListener="#{userBean.clear}" update="growl">
+                <p:ajax process="@this" update="@form"/>
+            </p:commandButton>
+
+
+        </p:panelGrid>   
+
+
+
+
+
+        <p:dataTable var="st" value="#{userBean.slist}" rendered="#{userBean.slist.size()!=0}" >
+            <f:facet name="header" >
+                Welcome To Virtual World 
+            </f:facet>
+
+
+            <p:column headerText="Id">
+
+                <p:commandLink value="#{st.sid}" actionListener="#{userBean.fetchRecord(st)}" >
+                    <p:ajax process="@this" update="@form"/>
+                </p:commandLink>
+<!--                    <h:outputText value="#{st.sid}" />-->
+            </p:column>
+            <p:column headerText="Name">
+                <h:outputText value="#{st.sfname}" />
+            </p:column>
+            <p:column headerText="Branch">
+                <h:outputText value="#{st.branch}" />
+            </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{st.email}" />
+            </p:column>
+        </p:dataTable>
+
+    </h:form>   
+
+
+
+
+</html>
+
+

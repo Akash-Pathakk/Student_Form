@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 Jul, 2023 11:18:41 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Studenttable" table="studenttable" catalog="world" optimistic-lock="version">
+        <id name="sid" type="java.lang.Integer">
+            <column name="sid" />
+            <generator class="identity" />
+        </id>
+        <property name="sfname" type="string">
+            <column name="sfname" length="45" />
+        </property>
+        <property name="slname" type="string">
+            <column name="slname" length="45" />
+        </property>
+        <property name="age" type ="date">
+            <column name="age" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="245" />
+        </property>
+        <property name="mobile" type="java.lang.Integer">
+            <column name="mobile" length="1"/>
+        </property>
+        <property name="saddress" type="string">
+            <column name="saddress" length="45" />
+        </property>
+        <property name="scity" type="string">
+            <column name="scity" length="45" />
+        </property>
+        <property name="szip" type="java.lang.Integer">
+            <column name="szip" length="11"/>
+        </property>
+        <property name="sadmission" type="string">
+            <column name="sadmission" length="45" />
+        </property>
+        <property name="branch" type="string">
+            <column name="branch" length="45" />
+        </property>
+        
+
+    </class>
+</hibernate-mapping>

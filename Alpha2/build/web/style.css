@@ -1,0 +1,16 @@
+ .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+        text-align: center;
+    }
+
+    .customPanelGrid .ui-panelgrid-content {
+        align-items: center;
+    }
+#stop{
+    display: flex;
+    justify-content: center;
+    background-color: #9edbd6;
+    border-radius: 10px;
+}
+.card.education{
+    background-color: lightgreen;
+}
